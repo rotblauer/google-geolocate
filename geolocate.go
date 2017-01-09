@@ -46,7 +46,7 @@ type geolocateResponse struct {
 func (g *GoogleGeo) geolocateRequest() ([]byte, error) {
 	dst := "https://www.googleapis.com/geolocation/v1/geolocate?key=" + g.apiKey
 	form := url.Values{}
-	// form.Add("considerIp", "true")
+	form.Add("considerIp", "true")
 
 	req, err := http.NewRequest("POST", dst, strings.NewReader(form.Encode()))
 	if err != nil {
@@ -62,6 +62,6 @@ func (g *GoogleGeo) geolocateRequest() ([]byte, error) {
 	if dataReadErr != nil {
 		return nil, dataReadErr
 	}
-
+	fmt.Print(resp)
 	return data, nil
 }
